@@ -23,11 +23,11 @@ export default function StudentRegister() {
   });
 
   //flag for succesful submit
-  const [isSubmit, setIsSubmit] = useState(false);
+  // const [isSubmit, setIsSubmit] = useState(false);
 
   //manage form errors
   //   const [formError, setFormError] = useState({});
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -37,7 +37,7 @@ export default function StudentRegister() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     //   setFormError(validation(formValues))
-    setIsSubmit(true);
+    // setIsSubmit(true);
   };
 
   return (
