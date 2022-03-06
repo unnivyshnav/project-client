@@ -27,12 +27,15 @@ export default function Write() {
       newCourse.photo = filename;
       console.log(data);
       try {
-        await axios.post("http://localhost:5000/api/upload", data);
+        await axios.post(
+          "https://ictak-project.herokuapp.com/api/upload",
+          data
+        );
       } catch (err) {}
     }
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/course",
+        "https://ictak-project.herokuapp.com/api/course",
         newCourse,
         {
           headers: { token: "Bearer " + user.accessToken },

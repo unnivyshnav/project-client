@@ -1,7 +1,7 @@
 import "./course.css";
 
 function Course({ course }) {
-  const PF = "http://localhost:5000/images/";
+  const PF = "https://ictak-project.herokuapp.com/images/";
   return (
     <div className="course">
       <div className="courseInfo">
