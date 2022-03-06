@@ -1,11 +1,11 @@
 import "./adminLogin.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
 import { useContext, useRef, useState } from "react";
 import axios from "axios";
 
 export default function StudentLogin() {
-  const { user, dispatch, isFetching } = useContext(Context);
+  const { dispatch, isFetching } = useContext(Context);
   const userRef = useRef();
   const passwordRef = useRef();
   const [wrong, setWrong] = useState("");
