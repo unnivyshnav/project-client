@@ -41,7 +41,7 @@ export default function Write() {
           headers: { token: "Bearer " + user.accessToken },
         }
       );
-      console.log(user.accessToken);
+      console.log(res);
       window.location.replace("/");
     } catch (err) {}
   };
