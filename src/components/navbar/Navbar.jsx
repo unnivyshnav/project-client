@@ -56,11 +56,13 @@ export default function Navbar() {
             </div>
           </div>
 
-          <span>
-            <Link className="link" to="/course">
-              COURSES
-            </Link>
-          </span>
+          {user && user.isAdmin && (
+            <span>
+              <Link className="link" to="/course">
+                ADD COURSES
+              </Link>
+            </span>
+          )}
           <span>
             <Link className="link" to="/employee">
               EMPLOYEES
