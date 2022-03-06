@@ -3,7 +3,7 @@ import "./top.css";
 export default function top() {
   return (
     <div className="top">
-      <img src="http://www.smtechsolutions.net/Images/SMImage.jpg" alt="" />
+      <img src="https://i.ibb.co/dQSNp7N/SMImage.jpg" alt="" />
     </div>
   );
 }
