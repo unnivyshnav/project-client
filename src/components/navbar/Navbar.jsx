@@ -70,12 +70,7 @@ export default function Navbar() {
           </span>
           <span>
             <Link className="link" to="/student">
-              STUDENT
-            </Link>
-          </span>
-          <span>
-            <Link className="link" to="/search">
-              SEARCH
+              STUDENTS
             </Link>
           </span>
         </div>
