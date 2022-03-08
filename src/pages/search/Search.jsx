@@ -6,19 +6,21 @@ import Table from "../../components/table/Table";
 export default function Search() {
   const [students, setStudents] = useState([]);
   const [query, setQuery] = useState("");
-  const keys = [
-    "name",
-    "qualification",
-    "passOutYear",
-    "course",
-    "place",
-    "exitExamMark",
-    "EmploymentStatus",
-  ];
+  // const keys = [
+  //   "name",
+  //   "qualification",
+  //   "passOutYear",
+  //   "course",
+  //   "place",
+  //   "exitExamMark",
+  //   "EmploymentStatus",
+  // ];
 
   useEffect(() => {
     const fetchStudents = async () => {
-      const res = await axios.get("http://localhost:5000/api/student/all");
+      const res = await axios.get(
+        "https://ictak-project.herokuapp.com/api/student/all"
+      );
       setStudents(res.data);
     };
     fetchStudents();
