@@ -1,9 +1,10 @@
 import "./studentRegister.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import { useState } from "react";
 
 export default function StudentRegister() {
-  //Manage form values
+  const [file, setFile] = useState(null);
   const [formValues, setFormValues] = useState({
     name: "",
     email: "",
@@ -22,13 +23,6 @@ export default function StudentRegister() {
     fee: "",
   });
 
-  //flag for succesful submit
-  // const [isSubmit, setIsSubmit] = useState(false);
-
-  //manage form errors
-  //   const [formError, setFormError] = useState({});
-  // const [error, setError] = useState(false);
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormValues({ ...formValues, [name]: value });
@@ -36,8 +30,24 @@ export default function StudentRegister() {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    //   setFormError(validation(formValues))
-    // setIsSubmit(true);
+    if (file) {
+      const data = new FormData();
+      const filename = file.name;
+      data.append("name", filename);
+      data.append("file", file);
+      formValues.photo = filename;
+      try {
+        await axios.post("http://localhost:5000/api/upload", data);
+      } catch (err) {}
+    }
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/auth/student-register",
+        formValues
+      );
+      console.log(res);
+      window.location.replace("/");
+    } catch (err) {}
   };
 
   return (
@@ -52,6 +62,7 @@ export default function StudentRegister() {
               name="name"
               className="registerInput"
               onChange={handleChange}
+              required="true"
             />
             <p className="error"></p>
             <label>Email</label>
@@ -59,6 +70,8 @@ export default function StudentRegister() {
               type="text"
               name="email"
               className="registerInput"
+              required="true"
+              errorMessage="It should be a valid email address"
               onChange={handleChange}
             />
             <p className="error"></p>
@@ -67,7 +80,9 @@ export default function StudentRegister() {
               type="password"
               name="password"
               className="registerInput"
+              required="true"
               onChange={handleChange}
+              // pattern="^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$"
             />
             <p className="error"></p>
             <label>Phone</label>
@@ -75,6 +90,7 @@ export default function StudentRegister() {
               type="text"
               name="phone"
               className="registerInput"
+              required="true"
               onChange={handleChange}
             />
             <p className="error"></p>
@@ -83,6 +99,7 @@ export default function StudentRegister() {
               type="text"
               name="place"
               className="registerInput"
+              required="true"
               onChange={handleChange}
             />
             <p className="error"></p>
@@ -94,6 +111,7 @@ export default function StudentRegister() {
               type="text"
               name="address"
               className="registerInput address"
+              required="true"
               onChange={handleChange}
             />
             <p className="error"></p>
@@ -102,6 +120,7 @@ export default function StudentRegister() {
               type="text"
               name="qualification"
               className="registerInput"
+              required="true"
               onChange={handleChange}
             />
             <p className="error"></p>
@@ -110,14 +129,16 @@ export default function StudentRegister() {
               type="text"
               name="passOutYear"
               className="registerInput"
+              required="true"
               onChange={handleChange}
             />
             <p className="error"></p>
             <label>Skillset</label>
             <input
               type="text"
-              name="skillset"
+              name="skillSet"
               className="registerInput"
+              required="true"
               onChange={handleChange}
             />
             <p className="error"></p>
@@ -126,6 +147,7 @@ export default function StudentRegister() {
               type="text"
               name="employmentStatus"
               className="registerInput"
+              required="true"
               onChange={handleChange}
             />
             <p className="error"></p>
@@ -136,6 +158,7 @@ export default function StudentRegister() {
               type="text"
               name="technologyTraining"
               className="registerInput"
+              required="true"
               onChange={handleChange}
             />
             <p className="error"></p>
@@ -144,6 +167,7 @@ export default function StudentRegister() {
               type="text"
               name="year"
               className="registerInput"
+              required="true"
               onChange={handleChange}
             />
             <p className="error"></p>
@@ -152,6 +176,7 @@ export default function StudentRegister() {
               type="text"
               name="course"
               className="registerInput"
+              required="true"
               onChange={handleChange}
             />
             <p className="error"></p>
@@ -160,7 +185,8 @@ export default function StudentRegister() {
               type="file"
               name="photo"
               className="registerInput"
-              onChange={handleChange}
+              required="true"
+              onChange={(e) => setFile(e.target.files[0])}
             />
             <p className="error"></p>
             <label>Fee</label>
@@ -168,6 +194,7 @@ export default function StudentRegister() {
               type="text"
               name="fee"
               className="registerInput"
+              required="true"
               onChange={handleChange}
             />
             <p className="error"></p>

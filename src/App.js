@@ -10,6 +10,7 @@ import EmployeeRegister from "./pages/employeeRegister/EmplyeeRegister";
 import { useContext } from "react";
 import { Context } from "./context/Context";
 import Write from "./pages/write/Write";
+import Search from "./pages/search/Search";
 
 function App() {
   const { user } = useContext(Context);
@@ -30,6 +31,7 @@ function App() {
         <Route path="/student-register" element={<StudentRegister />} />
         <Route path="/employee-register" element={<EmployeeRegister />} />
         <Route path="/course" element={<Write />} />
+        <Route path="/search" element={<Search />} />
       </Routes>
     </Router>
   );

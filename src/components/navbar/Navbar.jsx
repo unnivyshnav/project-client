@@ -69,8 +69,13 @@ export default function Navbar() {
             </Link>
           </span>
           <span>
-            <Link className="link" to="/student">
-              STUDENTS
+            <Link className="link" to="/search">
+              SEARCH STUDENTS
+            </Link>
+          </span>
+          <span>
+            <Link className="link" to="/approve">
+              APPROVE STUDENTS
             </Link>
           </span>
         </div>
