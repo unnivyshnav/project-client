@@ -1,9 +1,21 @@
 import "./studentRegister.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function StudentRegister() {
+  const [courses, setCourses] = useState([]);
+  useEffect(() => {
+    const fetchCourses = async () => {
+      const res = await axios.get(
+        "https://ictak-project.herokuapp.com/api/course/"
+      );
+      setCourses(res.data);
+    };
+    fetchCourses();
+  });
+  const [fee, setFee] = useState("");
+  const [course, setCourse] = useState("");
   const [file, setFile] = useState(null);
   const [formValues, setFormValues] = useState({
     name: "",
@@ -25,11 +37,29 @@ export default function StudentRegister() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+
     setFormValues({ ...formValues, [name]: value });
-    console.log(formValues);
   };
+  const handleCourse = (event) => {
+    setCourse(event.target.value);
+
+    console.log(course);
+  };
+  useEffect(() => {
+    courses.forEach((o) => {
+      if (o.name === course) {
+        console.log(o);
+        setFee(o.fee);
+      }
+    });
+  }, [course]);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+    formValues.course = course;
+    formValues.fee = fee;
+    console.log(formValues);
+
     if (file) {
       const data = new FormData();
       const filename = file.name;
@@ -37,18 +67,15 @@ export default function StudentRegister() {
       data.append("file", file);
       formValues.photo = filename;
       try {
-        await axios.post(
-          "https://ictak-project.herokuapp.com/api/upload",
-          data
-        );
+        await axios.post("http://localhost:5000/api/upload", data);
       } catch (err) {}
     }
     try {
       const res = await axios.post(
-        "https://ictak-project.herokuapp.com/api/auth/student-register",
+        "http://localhost:5000/api/auth/student-register",
         formValues
       );
-      console.log(res);
+      // console.log(res);
       window.location.replace("/");
     } catch (err) {}
   };
@@ -65,7 +92,7 @@ export default function StudentRegister() {
               name="name"
               className="registerInput"
               onChange={handleChange}
-              required="true"
+              // required="true"
             />
             <p className="error"></p>
             <label>Email</label>
@@ -73,8 +100,8 @@ export default function StudentRegister() {
               type="text"
               name="email"
               className="registerInput"
-              required="true"
-              errorMessage="It should be a valid email address"
+              // required="true"
+              // errorMessage="It should be a valid email address"
               onChange={handleChange}
             />
             <p className="error"></p>
@@ -83,7 +110,7 @@ export default function StudentRegister() {
               type="password"
               name="password"
               className="registerInput"
-              required="true"
+              // required="true"
               onChange={handleChange}
               // pattern="^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$"
             />
@@ -93,7 +120,7 @@ export default function StudentRegister() {
               type="text"
               name="phone"
               className="registerInput"
-              required="true"
+              // required="true"
               onChange={handleChange}
             />
             <p className="error"></p>
@@ -102,7 +129,7 @@ export default function StudentRegister() {
               type="text"
               name="place"
               className="registerInput"
-              required="true"
+              // required="true"
               onChange={handleChange}
             />
             <p className="error"></p>
@@ -114,7 +141,7 @@ export default function StudentRegister() {
               type="text"
               name="address"
               className="registerInput address"
-              required="true"
+              // required="true"
               onChange={handleChange}
             />
             <p className="error"></p>
@@ -123,7 +150,7 @@ export default function StudentRegister() {
               type="text"
               name="qualification"
               className="registerInput"
-              required="true"
+              // required="true"
               onChange={handleChange}
             />
             <p className="error"></p>
@@ -132,7 +159,7 @@ export default function StudentRegister() {
               type="text"
               name="passOutYear"
               className="registerInput"
-              required="true"
+              // required="true"
               onChange={handleChange}
             />
             <p className="error"></p>
@@ -141,18 +168,22 @@ export default function StudentRegister() {
               type="text"
               name="skillSet"
               className="registerInput"
-              required="true"
+              // required="true"
               onChange={handleChange}
             />
             <p className="error"></p>
             <label>Employment Status</label>
-            <input
+            <select
               type="text"
               name="employmentStatus"
               className="registerInput"
-              required="true"
+              // required="true"
               onChange={handleChange}
-            />
+            >
+              <option value="">Select</option>
+              <option value="Employed">Employed</option>
+              <option value="Unemployed">Unemployed</option>
+            </select>
             <p className="error"></p>
           </div>
           <div className="formItemscol">
@@ -161,7 +192,7 @@ export default function StudentRegister() {
               type="text"
               name="technologyTraining"
               className="registerInput"
-              required="true"
+              // required="true"
               onChange={handleChange}
             />
             <p className="error"></p>
@@ -170,25 +201,34 @@ export default function StudentRegister() {
               type="text"
               name="year"
               className="registerInput"
-              required="true"
+              // required="true"
+
               onChange={handleChange}
             />
             <p className="error"></p>
             <label>Course</label>
-            <input
+            <select
               type="text"
               name="course"
               className="registerInput"
-              required="true"
-              onChange={handleChange}
-            />
+              // required="true"
+              onChange={handleCourse}
+            >
+              <option value="">Select a Course</option>
+              {courses.map((course) => (
+                <option key={course._id} value={course.name}>
+                  {course.name}
+                </option>
+              ))}{" "}
+            </select>
+
             <p className="error"></p>
             <label>Photo</label>
             <input
               type="file"
               name="photo"
               className="registerInput"
-              required="true"
+              // required="true"
               onChange={(e) => setFile(e.target.files[0])}
             />
             <p className="error"></p>
@@ -197,8 +237,10 @@ export default function StudentRegister() {
               type="text"
               name="fee"
               className="registerInput"
-              required="true"
+              // required="true"
               onChange={handleChange}
+              disabled={true}
+              value={fee}
             />
             <p className="error"></p>
           </div>
