@@ -11,6 +11,7 @@ import { useContext } from "react";
 import { Context } from "./context/Context";
 import Write from "./pages/write/Write";
 import Search from "./pages/search/Search";
+import ApproveStudent from "./pages/approveStudents/ApproveStudent";
 
 function App() {
   const { user } = useContext(Context);
@@ -32,6 +33,7 @@ function App() {
         <Route path="/employee-register" element={<EmployeeRegister />} />
         <Route path="/course" element={<Write />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/approve" element={<ApproveStudent />} />
       </Routes>
     </Router>
   );
