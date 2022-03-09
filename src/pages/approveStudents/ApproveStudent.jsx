@@ -7,7 +7,7 @@ export default function ApproveStudent() {
   useEffect(() => {
     const fetchStudents = async () => {
       const res = await axios.get(
-        "https://ictak-project.herokuapp.com/approve"
+        "https://ictak-project.herokuapp.com/api/student/approve"
       );
       setStudents(res.data);
     };
@@ -21,7 +21,9 @@ export default function ApproveStudent() {
     const approveStudent = async () => {
       if (id) {
         try {
-          await axios.put(`https://ictak-project.herokuapp.com/approve/${id}`);
+          await axios.put(
+            `https://ictak-project.herokuapp.com/api/student/approve/${id}`
+          );
         } catch (err) {}
       }
       setId("00");
