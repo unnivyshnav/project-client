@@ -52,7 +52,7 @@ export default function StudentRegister() {
         setFee(o.fee);
       }
     });
-  }, [course]);
+  }, [course]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -75,7 +75,7 @@ export default function StudentRegister() {
         "http://localhost:5000/api/auth/student-register",
         formValues
       );
-      // console.log(res);
+      console.log(res);
       window.location.replace("/");
     } catch (err) {}
   };
