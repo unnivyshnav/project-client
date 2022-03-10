@@ -24,7 +24,7 @@ export default function StudentProfile() {
       console.log(name);
     };
     getStudent();
-  }, [path]);
+  }, [path]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleUpdate = async () => {
     try {
