@@ -1,32 +1,37 @@
-import React from "react";
+import "./table.css";
+import { Link } from "react-router-dom";
 
 export default function Table({ data }) {
   return (
     <div>
-      <table>
-        <tbody>
-          <tr>
-            <th>Name</th>
-            <th>Qualification</th>
-            <th>Pass out year</th>
-            <th>ICTAK Course</th>
-            <th>Place</th>
-            <th>Exit Exam Mark</th>
-            <th>Employment Status</th>
-          </tr>
-          {data.map((item) => (
-            <tr key={item._id}>
-              <td>{item.name}</td>
-              <td>{item.qualification}</td>
-              <td>{item.passOutYear}</td>
-              <td>{item.course}</td>
-              <td>{item.place}</td>
-              <td>{item.exitExamMark}</td>
-              <td>{item.employmentStatus}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {data.map((item) => (
+        <Link className="link" to={`/student/${item._id}`}>
+          <table className="table table-default table-striped tablestyle ">
+            <tbody>
+              <tr className="">
+                <th>Name</th>
+                <th>Qualification</th>
+                <th>Pass out year</th>
+                <th>ICTAK Course</th>
+                <th>Place</th>
+                <th>Exit Exam Mark</th>
+                <th>Employment Status</th>
+              </tr>
+
+              <tr className="" key={item._id}>
+                <td className="tdLink">{item.name}</td>
+
+                <td>{item.qualification}</td>
+                <td>{item.passOutYear}</td>
+                <td>{item.course}</td>
+                <td>{item.place}</td>
+                <td>{item.exitExamMark}</td>
+                <td>{item.employmentStatus}</td>
+              </tr>
+            </tbody>
+          </table>
+        </Link>
+      ))}
     </div>
   );
 }

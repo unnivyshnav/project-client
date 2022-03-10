@@ -28,7 +28,7 @@ export default function Write() {
       console.log(data);
       try {
         await axios.post(
-          "https://ictak-project.herokuapp.com/api/upload",
+          "https://ictak-project.herokuapp.com//api/upload",
           data
         );
       } catch (err) {}

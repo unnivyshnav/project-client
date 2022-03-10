@@ -44,17 +44,19 @@ export default function Navbar() {
               </div>
             </div>
           )}
-          <div className="dropdown">
-            <span>REGISTER</span>
-            <div className="options">
-              <Link className="link optionsValue" to="/student-register">
-                <span>STUDENT</span>
-              </Link>
-              <Link className="link optionsValue" to="/employee-register">
-                <span>EMPLOYEE</span>
-              </Link>
+          {!user && (
+            <div className="dropdown">
+              <span>REGISTER</span>
+              <div className="options">
+                <Link className="link optionsValue" to="/student-register">
+                  <span>STUDENT</span>
+                </Link>
+                <Link className="link optionsValue" to="/employee-register">
+                  <span>EMPLOYEE</span>
+                </Link>
+              </div>
             </div>
-          </div>
+          )}
 
           {user && user.isAdmin && (
             <span>
@@ -63,6 +65,11 @@ export default function Navbar() {
               </Link>
             </span>
           )}
+          <span>
+            <Link className="link" to="/courses">
+              COURSES
+            </Link>
+          </span>
           <span>
             <Link className="link" to="/employee">
               EMPLOYEES
@@ -76,6 +83,11 @@ export default function Navbar() {
           <span>
             <Link className="link" to="/approve">
               APPROVE STUDENTS
+            </Link>
+          </span>
+          <span>
+            <Link className="link" to="/employee-approve">
+              APPROVE EMPLOYEES
             </Link>
           </span>
         </div>

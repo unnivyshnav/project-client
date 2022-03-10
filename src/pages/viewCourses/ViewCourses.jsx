@@ -1,11 +1,9 @@
-import React from "react";
-import Top from "../../components/top/Top";
+import React, { useEffect, useState } from "react";
 import Courses from "../../components/courses/Courses";
-import "./home.scss";
-import { useEffect, useState } from "react";
 import axios from "axios";
+import "./viewCourses.css";
 
-const Home = () => {
+export default function ViewCourses() {
   const [courses, setCourses] = useState([]);
   useEffect(() => {
     const fetchCourses = async () => {
@@ -17,12 +15,10 @@ const Home = () => {
     fetchCourses();
   });
   return (
-    <div className="home">
-      <Top />
-      <h2>Courses</h2>
-      <Courses courses={courses} />
+    <div className="viewCourses">
+      <div className="inner">
+        <Courses courses={courses} />
+      </div>
     </div>
   );
-};
-
-export default Home;
+}

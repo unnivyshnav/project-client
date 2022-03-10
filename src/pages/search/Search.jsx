@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
 import "./search.css";
+import { useEffect, useState } from "react";
+
 import axios from "axios";
 import Table from "../../components/table/Table";
 
@@ -35,7 +36,7 @@ export default function Search() {
         item.exitExamMark.includes(query) ||
         item.passOutYear.includes(query) ||
         item.place.toLowerCase().includes(query) ||
-        item.employmentStatus.toLowerCase().includes(query)
+        item.employmentStatus.toLowerCase().startsWith(query)
     );
   };
   return (
@@ -46,6 +47,7 @@ export default function Search() {
         className="search"
         onChange={(e) => setQuery(e.target.value)}
       />
+      <span></span>
       <Table data={search(students)} />
     </div>
   );

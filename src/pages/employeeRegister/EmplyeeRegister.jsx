@@ -1,8 +1,10 @@
 import "./employeeRegister.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 
 export default function EmployeeRegister() {
+  const [file, setFile] = useState(null);
   //Manage form values
   const [formValues, setFormValues] = useState({
     name: "",
@@ -14,13 +16,6 @@ export default function EmployeeRegister() {
     photo: "",
   });
 
-  //flag for succesful submit
-  // const [isSubmit, setIsSubmit] = useState(false);
-
-  //manage form errors
-  //   const [formError, setFormError] = useState({});
-  // const [error, setError] = useState(false);
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormValues({ ...formValues, [name]: value });
@@ -28,8 +23,29 @@ export default function EmployeeRegister() {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    //   setFormError(validation(formValues))
-    // setIsSubmit(true);
+
+    if (file) {
+      const data = new FormData();
+      const filename = file.name;
+      data.append("name", filename);
+      data.append("file", file);
+      formValues.photo = filename;
+      console.log(formValues.photo);
+      try {
+        await axios.post(
+          "https://ictak-project.herokuapp.com/api/upload",
+          data
+        );
+      } catch (err) {}
+    }
+    try {
+      const res = await axios.post(
+        "https://ictak-project.herokuapp.com/api/auth/employee-register",
+        formValues
+      );
+      console.log(res);
+      // window.location.replace("/");
+    } catch (err) {}
   };
 
   return (
@@ -95,7 +111,7 @@ export default function EmployeeRegister() {
               type="file"
               name="photo"
               className="registerInput"
-              onChange={handleChange}
+              onChange={(e) => setFile(e.target.files[0])}
             />
             <p className="error"></p>
           </div>

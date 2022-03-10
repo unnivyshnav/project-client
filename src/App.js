@@ -13,6 +13,11 @@ import Write from "./pages/write/Write";
 import Search from "./pages/search/Search";
 import ApproveStudent from "./pages/approveStudents/ApproveStudent";
 
+import SearchEmployee from "./pages/searchEmployee/SearchEmployee";
+import SingleCourse from "./pages/singleCourse/SingleCourse";
+import ViewCourses from "./pages/viewCourses/ViewCourses";
+import StudentProfile from "./pages/studentProfile/StudentProfile";
+
 function App() {
   const { user } = useContext(Context);
   return (
@@ -34,6 +39,10 @@ function App() {
         <Route path="/course" element={<Write />} />
         <Route path="/search" element={<Search />} />
         <Route path="/approve" element={<ApproveStudent />} />
+        <Route path="/student/:id" element={<StudentProfile />} />
+        <Route path="/course/:id" element={<SingleCourse />} />
+        <Route path="/employee" element={<SearchEmployee />} />
+        <Route path="/courses" element={<ViewCourses />} />
       </Routes>
     </Router>
   );
