@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 export default function Table({ data }) {
   return (
-    <div>
+    <div className="">
       {data.map((item) => (
         <Link className="link" to={`/student/${item._id}`}>
-          <table className="table table-default table-striped tablestyle ">
+          <table className="table table-striped table-hover ">
             <tbody>
               <tr className="">
                 <th>Name</th>
