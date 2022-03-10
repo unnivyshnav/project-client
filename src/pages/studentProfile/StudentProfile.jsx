@@ -1,15 +1,15 @@
 import "./studentProfile.css";
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
-import { Context } from "../../context/Context";
+// import { Context } from "../../context/Context";
 
 export default function StudentProfile() {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
   const [student, setStudent] = useState({});
   const PF = "https://ictak-project.herokuapp.com/images/";
-  const { user } = useContext(Context);
+  //   const { user } = useContext(Context);
   const [name, setName] = useState("");
   useEffect(() => {
     const getStudent = async () => {
