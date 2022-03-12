@@ -24,7 +24,7 @@ export default function StudentProfile() {
   const [year, setYear] = useState("");
   const [password, setPassword] = useState("");
   const [exitExamMark, setExitExamMark] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState("");
   const [course, setCourse] = useState("");
   useEffect(() => {
     const getStudent = async () => {
