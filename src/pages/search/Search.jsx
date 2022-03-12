@@ -20,7 +20,7 @@ export default function Search() {
   useEffect(() => {
     const fetchStudents = async () => {
       const res = await axios.get(
-        "https://ictak-project.herokuapp.com/api/student/all"
+        "https://ictak-project.herokuapp.com/api/student/"
       );
       setStudents(res.data);
     };

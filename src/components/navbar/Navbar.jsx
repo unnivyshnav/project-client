@@ -5,19 +5,19 @@ import "./navbar.scss";
 
 export default function Navbar() {
   const { user, dispatch } = useContext(Context);
-  const [isScrolled, setIsScrolled] = useState(false);
-  window.onscroll = () => {
-    setIsScrolled(window.pageYOffset === 0 ? false : true);
-    return () => (window.onscroll = null);
-  };
+
+  // window.onscroll = () => {
+  //   setIsScrolled(window.pageYOffset === 0 ? false : true);
+  //   return () => (window.onscroll = null);
+  // };
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
   };
 
   return (
-    <div className={isScrolled ? "navbar1 scrolled" : "navbar1"}>
-      <div className="container ">
+    <div className={user && user.isAdmin ? "navbar1 admin " : "navbar1"}>
+      <div className="container-fluid  ">
         <div className="left">
           <img
             src="https://ictkerala.org/wp-content/uploads/2019/01/cropped-ict-ico.png"
@@ -70,34 +70,50 @@ export default function Navbar() {
               COURSES
             </Link>
           </span>
-          <span>
-            <Link className="link" to="/employee">
-              EMPLOYEES
-            </Link>
-          </span>
-          <span>
-            <Link className="link" to="/search">
-              SEARCH STUDENTS
-            </Link>
-          </span>
-          <span>
-            <Link className="link" to="/approve">
-              APPROVE STUDENTS
-            </Link>
-          </span>
-          <span>
-            <Link className="link" to="/employee-approve">
-              APPROVE EMPLOYEES
-            </Link>
-          </span>
+
+          {user && user.isAdmin && (
+            <span>
+              <Link className="link" to="/employee">
+                EMPLOYEES
+              </Link>
+            </span>
+          )}
+          {((user && user.isAdmin) || (user && user.isEmployee)) && (
+            <span>
+              <Link className="link" to="/search">
+                SEARCH STUDENTS
+              </Link>
+            </span>
+          )}
+          {user && user.isAdmin && (
+            <span>
+              <Link className="link" to="/approve">
+                APPROVE STUDENTS
+              </Link>
+            </span>
+          )}
+          {user && user.isAdmin && (
+            <span>
+              <Link className="link" to="/employee-approve">
+                APPROVE EMPLOYEES
+              </Link>
+            </span>
+          )}
         </div>
         {user && (
           <div className="right">
+            {user && user.isStudent && (
+              <span>
+                <Link className="link" to={`/student/${user._id || ""}`}>
+                  MY PROFILE
+                </Link>
+              </span>
+            )}
             <span>{user.username}</span>
             <Link className="link" to="/">
-              <li className="topListItem" onClick={handleLogout}>
+              <span className="topListItem" onClick={handleLogout}>
                 LOGOUT
-              </li>
+              </span>
             </Link>
           </div>
         )}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Courses from "../../components/courses/Courses";
 import axios from "axios";
-import "./viewCourses.css";
+import "./viewCourses.scss";
 
 export default function ViewCourses() {
   const [courses, setCourses] = useState([]);

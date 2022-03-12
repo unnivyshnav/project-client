@@ -1,16 +1,31 @@
 import "./studentProfile.css";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useLocation } from "react-router";
-// import { Context } from "../../context/Context";
+import { Context } from "../../context/Context";
 
 export default function StudentProfile() {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
   const [student, setStudent] = useState({});
+  const [relod, setReload] = useState(false);
+  const [photo, setPhoto] = useState("");
   const PF = "https://ictak-project.herokuapp.com/images/";
-  //   const { user } = useContext(Context);
+  const { user } = useContext(Context);
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [place, setPlace] = useState("");
+  const [address, setAddress] = useState("");
+  const [qualification, setQualification] = useState("");
+  const [passOutYear, setPassoutyear] = useState("");
+  const [skillSet, setSkillset] = useState("");
+  const [employmentStatus, setEmploymentStatus] = useState("");
+  const [year, setYear] = useState("");
+  const [password, setPassword] = useState("");
+  const [exitExamMark, setExitExamMark] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [course, setCourse] = useState("");
   useEffect(() => {
     const getStudent = async () => {
       const res = await axios.get(
@@ -21,10 +36,36 @@ export default function StudentProfile() {
       );
       setStudent(res.data);
       setName(res.data.name);
-      console.log(name);
+      setEmail(res.data.email);
+      setPhone(res.data.phone);
+      setPlace(res.data.place);
+      setAddress(res.data.address);
+      setQualification(res.data.qualification);
+      setPassoutyear(res.data.passOutYear);
+      setSkillset(res.data.skillSet);
+      setEmploymentStatus(res.data.employmentStatus);
+      setYear(res.data.year);
+      setPassword(res.data.password);
+      setCourse(res.data.course);
+      setPhoto(res.data.photo);
+      setExitExamMark(res.data.exitExamMark);
+      console.log(res.data);
     };
     getStudent();
-  }, [path]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [path, relod]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handledelete = async () => {
+    try {
+      await axios.delete(
+        `https://ictak-project.herokuapp.com/api/student/${student._id}`
+
+        // {
+        //   headers: { token: "Bearer " + user.accessToken },
+        // },
+      );
+      window.location.replace("/");
+    } catch (err) {}
+  };
 
   const handleUpdate = async () => {
     try {
@@ -32,165 +73,245 @@ export default function StudentProfile() {
         `https://ictak-project.herokuapp.com/api/student/${student._id}`,
         {
           name,
+          email,
+          phone,
+          place,
+          address,
+          qualification,
+          skillSet,
+          employmentStatus,
+          year,
+          password,
+          course,
+          photo,
         }
         // {
         //   headers: { token: "Bearer " + user.accessToken },
         // }
       );
       //   setUpdateMode(false);
+      setReload(!relod);
     } catch (err) {}
   };
   return (
-    <div className="studentProfile">
-      <div className="container">
-        <div className="row gutters">
-          <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-            <div className="card h-100">
-              <div className="card-body">
-                <div className="account-settings">
-                  <div className="user-profile">
-                    <div className="user-avatar">
-                      <img src={PF + student.photo} alt="Maxwell Admin" />
+    <div className="allWrap">
+      <div className="studentProfile mx-5 ">
+        <div className="container-fluid">
+          <div className="row gutters mx-5">
+            <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+              <div className="card h-100">
+                <div className="card-body">
+                  <div className="account-settings">
+                    <div className="user-profile">
+                      <div className="user-avatar">
+                        <img src={PF + photo} alt="Maxwell Admin" />
+                      </div>
+                      <h5 className="user-name">{student.name}</h5>
+                      <h6 className="user-email">{student.email}</h6>
                     </div>
-                    <h5 className="user-name">{student.name}</h5>
-                    <h6 className="user-email">{student.email}</h6>
-                  </div>
-                  <div className="about">
-                    <h5 className="user-name">About</h5>
-                    <p>{`I'm ${student.name}. From ${student.place}. `}</p>
+                    <div className="user-profile">
+                      <h4>Exit Exam Mark</h4>
+                      <h4>{exitExamMark} </h4>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-            <div className="card h-100">
-              <div className="card-body">
-                <div className="row gutters">
-                  <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h6 className="mb-2 text-primary">Personal Details</h6>
-                  </div>
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
-                      <label>Full Name</label>
-                      <input
-                        autoFocus
-                        type="text"
-                        className="form-control"
-                        id="fullName"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                      />
+            <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+              <div className="card h-100">
+                <div className="card-body">
+                  <div className="row gutters">
+                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                      <h6 className="mb-2 text-primary">
+                        View and edit Personal Details
+                      </h6>
                     </div>
-                  </div>
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
-                      <label>Email</label>
-                      <input type="email" className="form-control" id="eMail" />
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div className="form-group">
+                        <label>Full Name</label>
+                        <input
+                          autoFocus
+                          type="text"
+                          className="form-control"
+                          id="fullName"
+                          value={name || ""}
+                          onChange={(e) => setName(e.target.value)}
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
-                      <label>Phone</label>
-                      <input type="text" className="form-control" id="phone" />
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div className="form-group">
+                        <label>Email</label>
+                        <input
+                          type="email"
+                          className="form-control"
+                          value={email || ""}
+                          onChange={(e) => setEmail(e.target.value)}
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
-                      <label>Place</label>
-                      <input type="url" className="form-control" id="website" />
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div className="form-group">
+                        <label>Phone</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          value={phone || ""}
+                          onChange={(e) => setPhone(e.target.value)}
+                        />
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div className="row gutters">
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
-                      <label>Address</label>
-                      <textarea
-                        rows={6}
-                        type="name"
-                        className="form-control"
-                        id="Street"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="row gutters">
-                      <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div className="form-group col-xl-12">
-                          <label>Qualification</label>
-                          <input
-                            type="name"
-                            className="form-control"
-                            id="ciTy"
-                          />
-                        </div>
-                        <div className="form-group col-xl-12">
-                          <label>Pass-out year</label>
-                          <input type="text" className="form-control" />
-                        </div>
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div className="form-group">
+                        <label>Place</label>
+                        <input
+                          type="url"
+                          className="form-control"
+                          value={place || ""}
+                          onChange={(e) => setPlace(e.target.value)}
+                        />
                       </div>
                     </div>
                   </div>
+                  <div className="row gutters">
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div className="form-group">
+                        <label>Address</label>
+                        <textarea
+                          rows={4}
+                          type="name"
+                          className="form-control"
+                          value={address || ""}
+                          onChange={(e) => setAddress(e.target.value)}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div className="row gutters">
+                        <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                          <div className="form-group col-xl-12">
+                            <label>Qualification</label>
+                            <input
+                              type="name"
+                              className="form-control"
+                              value={qualification || ""}
+                              onChange={(e) => setQualification(e.target.value)}
+                            />
+                          </div>
+                          <div className="form-group col-xl-12">
+                            <label>Pass-out year</label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              value={passOutYear || ""}
+                              onChange={(e) => setPassoutyear(e.target.value)}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
-                      <label>Course</label>
-                      <input type="text" className="form-control" />
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div className="form-group">
+                        <label>Course</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          value={course || ""}
+                          onChange={(e) => setCourse(e.target.value)}
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
-                      <label>Year</label>
-                      <input type="text" className="form-control" id="zIp" />
+                    <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div className="form-group">
+                        <label>Year</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          value={year || ""}
+                          onChange={(e) => setYear(e.target.value)}
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
-                      <label>Employment Status</label>
-                      <input type="text" className="form-control" />
+                    <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div className="form-group">
+                        <label>Employment Status</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          value={employmentStatus || ""}
+                          onChange={(e) => setEmploymentStatus(e.target.value)}
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
-                      <label>Skillset</label>
-                      <input type="text" className="form-control" id="zIp" />
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div className="form-group">
+                        <label>Skillset</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          value={skillSet || ""}
+                          onChange={(e) => setSkillset(e.target.value)}
+                        />
+                      </div>
                     </div>
+                    {user && user.isStudent && (
+                      <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div className="form-group">
+                          <label>Password</label>
+                          <input
+                            type="password"
+                            className="form-control"
+                            onChange={(e) => setPassword(e.target.value)}
+                          />
+                        </div>
+                      </div>
+                    )}
+                    {user && user.isStudent && (
+                      <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div className="form-group">
+                          <label>Confirm Password</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            onChange={(e) => setPassword(e.target.value)}
+                          />
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
-                      <label>Password</label>
-                      <input type="text" className="form-control" />
-                    </div>
-                  </div>
-                  <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
-                      <label>Confirm Password</label>
-                      <input type="text" className="form-control" id="zIp" />
-                    </div>
-                  </div>
-                </div>
 
-                <div className="row gutters">
-                  <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div className="text-right ">
-                      <button
-                        type="button"
-                        id="submit"
-                        name="submit"
-                        className="btn btn-secondary mt-5 px-5 float-end "
-                      >
-                        Cancel
-                      </button>
-                      <button
-                        type="button"
-                        id="submit"
-                        name="submit"
-                        onClick={handleUpdate}
-                        className="btn btn-primary mt-5 px-5 mx-5 float-end"
-                      >
-                        Update
-                      </button>
+                  <div className="row gutters">
+                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                      <div className="text-right ">
+                        {user && user.isAdmin && (
+                          <button
+                            type="button"
+                            onClick={handledelete}
+                            name="submit"
+                            className="btn btn-danger mt-5 px-5 float-end "
+                          >
+                            Delete
+                          </button>
+                        )}
+                        <button
+                          type="button"
+                          id="submit"
+                          name="submit"
+                          className="btn btn-secondary mt-5 px-5 me-5 float-end "
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          type="button"
+                          id="submit"
+                          name="submit"
+                          onClick={handleUpdate}
+                          className="btn btn-primary mt-5 px-5 mx-5 float-end"
+                        >
+                          Update
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>

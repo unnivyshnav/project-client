@@ -3,6 +3,7 @@
   margin: 0px 25px 40px 25px;
   display: flex;
   flex-direction: column;
+  box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
 }
 
 .courseImg {
@@ -20,19 +21,21 @@
 }
 
 .courseTitle {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 900;
   margin-top: 25px;
+  color: #000000;
   cursor: pointer;
   text-align: center;
 }
 
 .courseDesc {
+  padding: 0px 10px;
   font-family: "Varela Round", Arial, Helvetica, sans-serif;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 24px;
-  color: #a5a5a5;
+  color: #000000;
   text-align: justify;
   margin-top: 15px;
   overflow: hidden;

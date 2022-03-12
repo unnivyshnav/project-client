@@ -3,7 +3,7 @@ import React from "react";
 export default function EmployeeTable({ data }) {
   return (
     <div>
-      <table>
+      <table className="table table-striped table-hover">
         <tbody>
           <tr>
             <th>Name</th>

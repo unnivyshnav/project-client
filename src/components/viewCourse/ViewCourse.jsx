@@ -17,7 +17,7 @@ export default function ViewCourse() {
   useEffect(() => {
     const getCourse = async () => {
       const res = await axios.get(
-        "http://localhost:5000/api/course/find/" + path
+        "https://ictak-project.herokuapp.com/api/course/find/" + path
         // {
         //   headers: { token: "Bearer " + user.accessToken },
         // }
@@ -32,7 +32,7 @@ export default function ViewCourse() {
   const handleDelete = async () => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/course/${course._id}`,
+        `https://ictak-project.herokuapp.com/api/course/${course._id}`,
 
         // {
         //   headers: { token: "Bearer " + user.accessToken },

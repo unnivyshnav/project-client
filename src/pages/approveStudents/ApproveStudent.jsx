@@ -33,8 +33,8 @@ export default function ApproveStudent() {
 
   return (
     <div className="approveStudent">
-      <h5>Approve Student</h5>
-      <table>
+      <h1>Approve Student</h1>
+      <table className="table table-dark table-hover">
         <tbody>
           <tr>
             <th>Name</th>
@@ -56,10 +56,14 @@ export default function ApproveStudent() {
 
               <td>{item.employmentStatus}</td>
               <td>
-                <button value={item._id} onClick={handleClick}>
+                <button
+                  className="btn btn-success"
+                  value={item._id}
+                  onClick={handleClick}
+                >
                   Approve
                 </button>
-                <button>Reject</button>
+                <button className="btn btn-danger mx-2">Reject</button>
               </td>
             </tr>
           ))}

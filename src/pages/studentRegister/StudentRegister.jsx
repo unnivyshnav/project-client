@@ -67,12 +67,15 @@ export default function StudentRegister() {
       data.append("file", file);
       formValues.photo = filename;
       try {
-        await axios.post("http://localhost:5000/api/upload", data);
+        await axios.post(
+          "https://ictak-project.herokuapp.com/api/upload",
+          data
+        );
       } catch (err) {}
     }
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/student-register",
+        "https://ictak-project.herokuapp.com/api/auth/student-register",
         formValues
       );
       console.log(res);
