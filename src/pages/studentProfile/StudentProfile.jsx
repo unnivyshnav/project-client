@@ -65,7 +65,7 @@ export default function StudentProfile() {
         // },
       );
 
-      window.location.replace("/");
+      window.location.replace("/search");
     } catch (err) {}
   };
 

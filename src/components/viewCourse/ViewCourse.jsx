@@ -76,17 +76,18 @@ export default function ViewCourse() {
         ) : (
           <h1 className="singleCourseTitle">
             {name}
-
-            <div className="singleCourseEdit">
-              <i
-                className="singlecourseIcon far fa-edit"
-                onClick={() => setUpdateMode(true)}
-              ></i>
-              <i
-                className="singleCourseIcon far fa-trash-alt"
-                onClick={handleDelete}
-              ></i>
-            </div>
+            {user && user.isAdmin && (
+              <div className="singleCourseEdit">
+                <i
+                  className="singlecourseIcon far fa-edit"
+                  onClick={() => setUpdateMode(true)}
+                ></i>
+                <i
+                  className="singleCourseIcon far fa-trash-alt"
+                  onClick={handleDelete}
+                ></i>
+              </div>
+            )}
           </h1>
         )}
         <div className="singleCourseInfo">

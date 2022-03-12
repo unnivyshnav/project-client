@@ -1,6 +1,6 @@
 .studentRegister {
   height: 100vh;
-
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,6 +12,7 @@
 
 .registerTitle {
   font-size: 50px;
+  margin-top: 50px;
 }
 
 .registerForm {
@@ -64,18 +65,11 @@
   border-radius: 10px;
 }
 
-.error {
-  color: rgb(0, 0, 0);
-  display: flex;
-  justify-content: center;
-  height: 0.1px;
-}
-
 .formItemscol {
-  margin-top: 20px;
+  /* margin-top: 20px; */
   display: flex;
   flex-direction: column;
-  margin: 20px;
+  /* margin: 20px; */
 }
 .formcol {
   display: flex;
@@ -84,4 +78,29 @@
 
 .address {
   height: 50px;
+}
+
+.formInput {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.error {
+  padding: 3px;
+
+  visibility: hidden;
+}
+
+input:invalid[focused="true"] {
+  border: 2px solid red;
+}
+
+input:invalid[focused="true"] ~ .error {
+  visibility: visible;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  display: block;
+  margin-bottom: 20px;
+  text-align: center;
 }
