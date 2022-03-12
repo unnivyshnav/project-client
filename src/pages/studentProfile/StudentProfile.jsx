@@ -24,6 +24,7 @@ export default function StudentProfile() {
   const [year, setYear] = useState("");
   const [password, setPassword] = useState("");
   const [exitExamMark, setExitExamMark] = useState("");
+  const [updateMode, setUpdateMode] = useState(false);
   // const [confirmPassword, setConfirmPassword] = useState("");
   const [course, setCourse] = useState("");
   useEffect(() => {
@@ -63,11 +64,13 @@ export default function StudentProfile() {
         //   headers: { token: "Bearer " + user.accessToken },
         // },
       );
+
       window.location.replace("/");
     } catch (err) {}
   };
 
   const handleUpdate = async () => {
+    console.log(exitExamMark);
     try {
       await axios.put(
         `https://ictak-project.herokuapp.com/api/student/${student._id}`,
@@ -84,12 +87,13 @@ export default function StudentProfile() {
           password,
           course,
           photo,
+          exitExamMark,
         }
         // {
         //   headers: { token: "Bearer " + user.accessToken },
         // }
       );
-      //   setUpdateMode(false);
+      setUpdateMode(false);
       setReload(!relod);
     } catch (err) {}
   };
@@ -111,7 +115,28 @@ export default function StudentProfile() {
                     </div>
                     <div className="user-profile">
                       <h4>Exit Exam Mark</h4>
-                      <h4>{exitExamMark} </h4>
+                      {updateMode ? (
+                        <div>
+                          <input
+                            placeholder="Enter Mark"
+                            name="mark"
+                            onChange={(e) => setExitExamMark(e.target.value)}
+                          />
+                          <span>
+                            <button onClick={handleUpdate}>Update</button>
+                          </span>
+                        </div>
+                      ) : (
+                        <h4>
+                          {exitExamMark}
+                          <span>
+                            <i
+                              className="singleCourseIcon far fa-edit"
+                              onClick={() => setUpdateMode(true)}
+                            ></i>
+                          </span>{" "}
+                        </h4>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -236,12 +261,15 @@ export default function StudentProfile() {
                     <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
                         <label>Employment Status</label>
-                        <input
+                        <select
                           type="text"
                           className="form-control"
                           value={employmentStatus || ""}
                           onChange={(e) => setEmploymentStatus(e.target.value)}
-                        />
+                        >
+                          <option value="Employed">Employed</option>
+                          <option value="Unemployed">Unemployed</option>
+                        </select>
                       </div>
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -281,39 +309,41 @@ export default function StudentProfile() {
                     )}
                   </div>
 
-                  <div className="row gutters">
-                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                      <div className="text-right ">
-                        {user && user.isAdmin && (
+                  {user && !user.isEmployee && (
+                    <div className="row gutters">
+                      <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div className="text-right ">
+                          {user && user.isAdmin && (
+                            <button
+                              type="button"
+                              onClick={handledelete}
+                              name="submit"
+                              className="btn btn-danger mt-5 px-5 float-end "
+                            >
+                              Delete
+                            </button>
+                          )}
                           <button
                             type="button"
-                            onClick={handledelete}
+                            id="submit"
                             name="submit"
-                            className="btn btn-danger mt-5 px-5 float-end "
+                            className="btn btn-secondary mt-5 px-5 me-5 float-end "
                           >
-                            Delete
+                            Cancel
                           </button>
-                        )}
-                        <button
-                          type="button"
-                          id="submit"
-                          name="submit"
-                          className="btn btn-secondary mt-5 px-5 me-5 float-end "
-                        >
-                          Cancel
-                        </button>
-                        <button
-                          type="button"
-                          id="submit"
-                          name="submit"
-                          onClick={handleUpdate}
-                          className="btn btn-primary mt-5 px-5 mx-5 float-end"
-                        >
-                          Update
-                        </button>
+                          <button
+                            type="button"
+                            id="submit"
+                            name="submit"
+                            onClick={handleUpdate}
+                            className="btn btn-primary mt-5 px-5 mx-5 float-end"
+                          >
+                            Update
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>
