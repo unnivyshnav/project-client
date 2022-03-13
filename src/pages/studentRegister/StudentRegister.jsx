@@ -53,6 +53,7 @@ export default function StudentRegister() {
     } catch (error) {
       console.log(error);
     }
+    window.location.replace("/student-login");
   };
 
   ////////////////////////
