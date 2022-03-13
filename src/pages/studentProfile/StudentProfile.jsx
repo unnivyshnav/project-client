@@ -108,7 +108,7 @@ export default function StudentProfile() {
                   <div className="account-settings">
                     <div className="user-profile">
                       <div className="user-avatar">
-                        <img src={PF + photo} alt="Maxwell Admin" />
+                        <img src={PF + photo} alt="Student" />
                       </div>
                       <h5 className="user-name">{student.name}</h5>
                       <h6 className="user-email">{student.email}</h6>
@@ -130,10 +130,13 @@ export default function StudentProfile() {
                         <h4>
                           {exitExamMark}
                           <span>
-                            <i
-                              className="singleCourseIcon far fa-edit"
-                              onClick={() => setUpdateMode(true)}
-                            ></i>
+                            {((user && user.isAdmin) ||
+                              (user && user.isEmployee)) && (
+                              <i
+                                className="singleCourseIcon far fa-edit"
+                                onClick={() => setUpdateMode(true)}
+                              ></i>
+                            )}
                           </span>{" "}
                         </h4>
                       )}
