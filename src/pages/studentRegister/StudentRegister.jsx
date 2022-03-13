@@ -316,6 +316,7 @@ export default function StudentRegister() {
                       onChange={handleChange}
                       onFocus={() => setFocused(false)}
                     >
+                      <option value="">Select</option>
                       <option value="Employed">Employed</option>
                       <option value="Unemployed">Unemployed</option>
                     </select>
