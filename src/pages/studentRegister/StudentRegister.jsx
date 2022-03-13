@@ -32,6 +32,7 @@ export default function StudentRegister() {
             "https://ictak-project.herokuapp.com/api/payment/verify";
           const { data } = await axios.post(verifyUrl, response);
           console.log(data);
+          window.location.replace("/home");
         } catch (error) {
           console.log(error);
         }
@@ -53,7 +54,6 @@ export default function StudentRegister() {
     } catch (error) {
       console.log(error);
     }
-    window.location.replace("/student-login");
   };
 
   ////////////////////////

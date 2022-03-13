@@ -21,7 +21,7 @@ export default function Table({ data }) {
 
               <tr className="" key={item._id}>
                 <td className="tdLink">
-                  <img src={PF + item.photo} alt="profile.pic" />
+                  {/* <img src={PF + item.photo} alt="profile.pic" /> */}
                   {item.name}
                 </td>
 
