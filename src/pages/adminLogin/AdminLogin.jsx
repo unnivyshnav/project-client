@@ -53,7 +53,7 @@ export default function StudentLogin() {
           ref={passwordRef}
         />
 
-        <button className="loginButton" type="submit" disabled={isFetching}>
+        <button className="loginButton" type="submit">
           Login
         </button>
       </form>

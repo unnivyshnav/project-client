@@ -18,7 +18,8 @@ import SearchEmployee from "./pages/searchEmployee/SearchEmployee";
 import SingleCourse from "./pages/singleCourse/SingleCourse";
 import ViewCourses from "./pages/viewCourses/ViewCourses";
 import StudentProfile from "./pages/studentProfile/StudentProfile";
-// import ApproveEmployee from "./pages/approveEmployee/ApproveEmployee";
+import ApproveEmployee from "./pages/approveEmployee/ApproveEmployee";
+import EmployeeProfile from "./pages/employeeProfile/EmployeeProfile";
 
 function App() {
   const { user } = useContext(Context);
@@ -43,10 +44,11 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/approve" element={<ApproveStudent />} />
         <Route path="/student/:id" element={<StudentProfile />} />
+        <Route path="/employee/:id" element={<EmployeeProfile />} />
         <Route path="/course/:id" element={<SingleCourse />} />
         <Route path="/employee" element={<SearchEmployee />} />
         <Route path="/courses" element={<ViewCourses />} />
-        {/* <Route path="/employee-approve" element={<ApproveEmployee />} /> */}
+        <Route path="/employee-approve" element={<ApproveEmployee />} />
       </Routes>
     </Router>
   );

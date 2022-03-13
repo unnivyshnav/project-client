@@ -8,7 +8,7 @@ export default function ViewCourse() {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
   const [course, setCourse] = useState({});
-  const PF = "http://localhost:5000/images/";
+  const PF = "https://ictak-project.herokuapp.com/images/";
   const { user } = useContext(Context);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");

@@ -2,6 +2,7 @@ import "./table.css";
 import { Link } from "react-router-dom";
 
 export default function Table({ data }) {
+  const PF = "https://ictak-project.herokuapp.com/images/";
   return (
     <div className="">
       {data.map((item) => (
@@ -19,7 +20,10 @@ export default function Table({ data }) {
               </tr>
 
               <tr className="" key={item._id}>
-                <td className="tdLink">{item.name}</td>
+                <td className="tdLink">
+                  <img src={PF + item.photo} alt="profile.pic" />
+                  {item.name}
+                </td>
 
                 <td>{item.qualification}</td>
                 <td>{item.passOutYear}</td>
