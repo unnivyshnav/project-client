@@ -20,6 +20,7 @@ import ViewCourses from "./pages/viewCourses/ViewCourses";
 import StudentProfile from "./pages/studentProfile/StudentProfile";
 import ApproveEmployee from "./pages/approveEmployee/ApproveEmployee";
 import EmployeeProfile from "./pages/employeeProfile/EmployeeProfile";
+import Payment from "./components/payment/Payment";
 
 function App() {
   const { user } = useContext(Context);
@@ -49,6 +50,7 @@ function App() {
         <Route path="/employee" element={<SearchEmployee />} />
         <Route path="/courses" element={<ViewCourses />} />
         <Route path="/employee-approve" element={<ApproveEmployee />} />
+        <Route path="/payment" element={<Payment />} />
       </Routes>
     </Router>
   );

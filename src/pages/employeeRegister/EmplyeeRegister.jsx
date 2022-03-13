@@ -44,7 +44,7 @@ export default function EmployeeRegister() {
         formValues
       );
       console.log(res);
-      window.location.replace("/emplyee-login");
+      window.location.replace("/employee-login");
     } catch (err) {}
   };
 
