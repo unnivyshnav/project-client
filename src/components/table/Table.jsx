@@ -2,7 +2,7 @@ import "./table.css";
 import { Link } from "react-router-dom";
 
 export default function Table({ data }) {
-  const PF = "https://ictak-project.herokuapp.com/images/";
+  // const PF = "https://ictak-project.herokuapp.com/images/";
   return (
     <div className="">
       {data.map((item) => (
