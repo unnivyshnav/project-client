@@ -399,11 +399,11 @@ export default function StudentRegister() {
               <button className="registerButton col-6 mx-4" type="submit">
                 REGISTER
               </button>
-              <button className="registerButton col-6 mx-4">
+              {/* <button className="registerButton col-6 mx-4">
                 <Link to="/login" className="link">
                   LOGIN
                 </Link>
-              </button>
+              </button> */}
             </div>
           </form>
         </div>
