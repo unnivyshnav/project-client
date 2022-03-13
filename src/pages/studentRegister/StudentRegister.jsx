@@ -1,22 +1,22 @@
 import "./studentRegister.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { pattern } from "../../validation/validation";
 import { errorMessage } from "../../validation/validation";
-import Payment from "../../components/payment/Payment";
+// import Payment from "../../components/payment/Payment";
 
 export default function StudentRegister() {
   /////////////////////
   // payment//////////
   ////////////////////
 
-  const [book, setBook] = useState({
+  const book = {
     name: "The Fault in our stars",
     author: " Vyshnav",
     img: "https://ictkerala.org/wp-content/uploads/2019/01/cropped-ict-ico.png",
     price: 250,
-  });
+  };
   const initPayment = (data) => {
     const options = {
       key: "rzp_test_oFO1alVZCivFv0",
@@ -144,7 +144,7 @@ export default function StudentRegister() {
         "https://ictak-project.herokuapp.com/api/auth/student-register",
         formValues
       );
-      // console.log(res);
+      console.log(res);
 
       // window.location.replace("/student-login");
     } catch (err) {}
