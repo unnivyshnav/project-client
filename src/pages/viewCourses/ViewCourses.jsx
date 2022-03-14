@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Courses from "../../components/courses/Courses";
 import axios from "axios";
+
 import "./viewCourses.scss";
 
 export default function ViewCourses() {
@@ -14,6 +15,7 @@ export default function ViewCourses() {
     };
     fetchCourses();
   });
+
   return (
     <div className="viewCourses">
       <div className="inner">

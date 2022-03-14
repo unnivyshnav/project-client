@@ -1,10 +1,16 @@
 import "./course.css";
 import { Link } from "react-router-dom";
-
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 function Course({ course }) {
   const PF = "https://ictak-project.herokuapp.com/images/";
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
+
   return (
-    <div className="course">
+    <div data-aos="flip-left" className="course">
       <Link className="link" to={`/course/${course._id}`}>
         <div className="courseInfo">
           <img className="courseImg" src={PF + course.photo} alt="" />
