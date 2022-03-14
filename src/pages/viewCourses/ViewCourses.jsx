@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Courses from "../../components/courses/Courses";
 import axios from "axios";
-
+import Skeleton from "../../components/skeleton/Skeleton";
 import "./viewCourses.scss";
 
 export default function ViewCourses() {
+  const [isLoading, setIsLoading] = useState(true);
   const [courses, setCourses] = useState([]);
   useEffect(() => {
     const fetchCourses = async () => {
@@ -12,15 +13,22 @@ export default function ViewCourses() {
         "https://ictak-project.herokuapp.com/api/course/"
       );
       setCourses(res.data);
+      setIsLoading(false);
     };
     fetchCourses();
   });
 
   return (
-    <div className="viewCourses">
-      <div className="inner">
-        <Courses courses={courses} />
-      </div>
-    </div>
+    <>
+      {isLoading ? (
+        <Skeleton type="custom" />
+      ) : (
+        <div className="viewCourses">
+          <div className="inner">
+            <Courses courses={courses} />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

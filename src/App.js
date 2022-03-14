@@ -21,6 +21,7 @@ import StudentProfile from "./pages/studentProfile/StudentProfile";
 import ApproveEmployee from "./pages/approveEmployee/ApproveEmployee";
 import EmployeeProfile from "./pages/employeeProfile/EmployeeProfile";
 import Payment from "./components/payment/Payment";
+import Skeleton from "./components/skeleton/Skeleton";
 
 function App() {
   const { user } = useContext(Context);
@@ -51,6 +52,7 @@ function App() {
         <Route path="/courses" element={<ViewCourses />} />
         <Route path="/employee-approve" element={<ApproveEmployee />} />
         <Route path="/payment" element={<Payment />} />
+        <Route path="/sk" element={<Skeleton type="custom" />} />
       </Routes>
     </Router>
   );

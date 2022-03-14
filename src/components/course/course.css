@@ -13,6 +13,10 @@
   object-fit: cover;
   border-radius: 7px;
   margin-bottom: 10px;
+  transition: all 0.2s linear;
+}
+.courseImg:hover {
+  transform: scale(1.1);
 }
 
 .courseInfo {
@@ -44,4 +48,23 @@
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+}
+
+@media screen and (max-width: 968px) {
+  .course {
+    display: block;
+    padding-left: 10%;
+    padding-right: 20%;
+    width: 100%;
+    align-items: center;
+  }
+
+  .courseTitle {
+    margin-left: 30%;
+    width: 100%;
+  }
+
+  .courseImg {
+    margin-left: 30%;
+  }
 }

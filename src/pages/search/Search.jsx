@@ -1,11 +1,13 @@
 import "./search.css";
 import { useEffect, useState, useContext } from "react";
 import { Context } from "../../context/Context";
+import Skeleton from "../../components/skeleton/Skeleton";
 
 import axios from "axios";
 import Table from "../../components/table/Table";
 
 export default function Search() {
+  const [isLoading, setIsLoading] = useState(true);
   const { user } = useContext(Context);
   const [students, setStudents] = useState([]);
   const [query, setQuery] = useState("");
@@ -28,6 +30,7 @@ export default function Search() {
         }
       );
       setStudents(res.data);
+      setIsLoading(false);
     };
     fetchStudents();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -46,14 +49,21 @@ export default function Search() {
   };
   return (
     <div className="searchmain">
-      <input
-        type="text"
-        placeholder="Search"
-        className="search"
-        onChange={(e) => setQuery(e.target.value)}
-      />
-      <span></span>
-      <Table data={search(students)} />
+      {isLoading ? (
+        <Skeleton type="custom" />
+      ) : (
+        <div className="searchmain">
+          {" "}
+          <input
+            type="text"
+            placeholder="Search"
+            className="search"
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <span></span>
+          <Table data={search(students)} />
+        </div>
+      )}
     </div>
   );
 }

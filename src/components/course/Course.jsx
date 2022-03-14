@@ -6,11 +6,11 @@ import { useEffect } from "react";
 function Course({ course }) {
   const PF = "https://ictak-project.herokuapp.com/images/";
   useEffect(() => {
-    Aos.init({ duration: 2000 });
+    Aos.init({ duration: 1000 });
   }, []);
 
   return (
-    <div data-aos="flip-left" className="course">
+    <div data-aos="zoom-in-up" className="course">
       <Link className="link" to={`/course/${course._id}`}>
         <div className="courseInfo">
           <img className="courseImg" src={PF + course.photo} alt="" />
