@@ -9,14 +9,14 @@ function Footer() {
       <div div className="footer-links">
         <div className="footer-link-wrapper">
           <div className="footer-link-items">
-            <h2>HEAD QUARTERS</h2>
+            <h2 className="zone">HEAD QUARTERS</h2>
             <p className="address">
               L-9, Thejaswini Building, Technopark, Thiruvananthapuram, Kerala,
               India. Phone: 7594051437
             </p>
           </div>
           <div className="footer-link-items">
-            <h2>CENTRAL REGION</h2>
+            <h2 className="zone">CENTRAL REGION</h2>
             <p className="address">
               Ground Floor,Rajamally Building, Infopark, Koratty, Thrissur,
               Kerala
@@ -25,14 +25,14 @@ function Footer() {
         </div>
         <div className="footer-link-wrapper">
           <div className="footer-link-items">
-            <h2>NORTH REGION</h2>
+            <h2 className="zone">NORTH REGION</h2>
             <p className="address">
               2nd Floor, Ul Cyberpark Building, Nellikode PO, Kozhikode, Kerala,
               India.
             </p>
           </div>
           <div className="footer-link-items">
-            <h2>SOUTH REGION</h2>
+            <h2 className="zone">SOUTH REGION</h2>
             <p className="address">
               L-9, Thejaswini Building, Technopark, Thiruvananthapuram, Kerala,
               India.
