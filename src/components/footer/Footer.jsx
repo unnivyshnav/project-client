@@ -5,18 +5,19 @@ import { Link } from "react-router-dom";
 function Footer() {
   return (
     <div className="footer-container">
+      <h2 className="footerHead">ICT Academy Of Kerala</h2>
       <div div className="footer-links">
         <div className="footer-link-wrapper">
           <div className="footer-link-items">
             <h2>HEAD QUARTERS</h2>
-            <p>
+            <p className="address">
               L-9, Thejaswini Building, Technopark, Thiruvananthapuram, Kerala,
               India. Phone: 7594051437
             </p>
           </div>
           <div className="footer-link-items">
             <h2>CENTRAL REGION</h2>
-            <p>
+            <p className="address">
               Ground Floor,Rajamally Building, Infopark, Koratty, Thrissur,
               Kerala
             </p>
@@ -25,14 +26,14 @@ function Footer() {
         <div className="footer-link-wrapper">
           <div className="footer-link-items">
             <h2>NORTH REGION</h2>
-            <p>
+            <p className="address">
               2nd Floor, Ul Cyberpark Building, Nellikode PO, Kozhikode, Kerala,
               India.
             </p>
           </div>
           <div className="footer-link-items">
             <h2>SOUTH REGION</h2>
-            <p>
+            <p className="address">
               L-9, Thejaswini Building, Technopark, Thiruvananthapuram, Kerala,
               India.
             </p>

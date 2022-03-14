@@ -7,6 +7,14 @@
   /* justify-content: center; */
   align-items: center;
 }
+.footerHead {
+  font-size: x-large;
+  color: #b1b1b1;
+  font-family: "Cabin", sans-serif;
+}
+.address {
+  color: rgb(0, 0, 0);
+}
 
 .footer-links {
   width: 100%;
