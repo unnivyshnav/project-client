@@ -109,6 +109,13 @@ export default function Navbar() {
                 </Link>
               </span>
             )}
+            {user && user.isEmployee && (
+              <span>
+                <Link className="link" to={`/employee/${user._id || ""}`}>
+                  MY PROFILE
+                </Link>
+              </span>
+            )}
             <span>{user.username}</span>
             <Link className="link" to="/">
               <span className="topListItem" onClick={handleLogout}>

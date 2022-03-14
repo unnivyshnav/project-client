@@ -1,13 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { Context } from "../../context/Context";
 import "./approveEmployee.css";
 import axios from "axios";
 export default function ApproveEmployee() {
+  const { user } = useContext(Context);
   const [employees, setEmployees] = useState([]);
   const [id, setId] = useState("");
   useEffect(() => {
     const fetchEmployees = async () => {
       const res = await axios.get(
-        "https://ictak-project.herokuapp.com/api/employee/approve"
+        "https://ictak-project.herokuapp.com/api/employee/approve",
+        {
+          headers: { token: "Bearer " + user.accessToken },
+        }
       );
       setEmployees(res.data);
     };
@@ -22,7 +27,11 @@ export default function ApproveEmployee() {
       if (id) {
         try {
           await axios.put(
-            `https://ictak-project.herokuapp.com/api/employee/approve/${id}`
+            `https://ictak-project.herokuapp.com/api/employee/approve/${id}`,
+            {},
+            {
+              headers: { token: "Bearer " + user.accessToken },
+            }
           );
         } catch (err) {}
       }

@@ -30,10 +30,10 @@ export default function EmployeeProfile() {
   useEffect(() => {
     const getEmployee = async () => {
       const res = await axios.get(
-        "https://ictak-project.herokuapp.com/api/employee/find/" + path
-        // {
-        //   headers: { token: "Bearer " + user.accessToken },
-        // }
+        "https://ictak-project.herokuapp.com/api/employee/find/" + path,
+        {
+          headers: { token: "Bearer " + user.accessToken },
+        }
       );
       setEmployee(res.data);
       setName(res.data.name);
@@ -88,10 +88,10 @@ export default function EmployeeProfile() {
           course,
           photo,
           role,
+        },
+        {
+          headers: { token: "Bearer " + user.accessToken },
         }
-        // {
-        //   headers: { token: "Bearer " + user.accessToken },
-        // }
       );
       setUpdateMode(false);
 
@@ -118,7 +118,7 @@ export default function EmployeeProfile() {
                       {updateMode ? (
                         <div>
                           <input
-                            placeholder="Enter Mark"
+                            placeholder="Enter new role"
                             name="mark"
                             onChange={(e) => setRole(e.target.value)}
                           />
@@ -130,10 +130,12 @@ export default function EmployeeProfile() {
                         <h4>
                           {role}
                           <span>
-                            <i
-                              className="singleCourseIcon far fa-edit"
-                              onClick={() => setUpdateMode(true)}
-                            ></i>
+                            {user && user.isAdmin && (
+                              <i
+                                className="singleCourseIcon far fa-edit"
+                                onClick={() => setUpdateMode(true)}
+                              ></i>
+                            )}
                           </span>{" "}
                         </h4>
                       )}
@@ -309,41 +311,39 @@ export default function EmployeeProfile() {
                     )}
                   </div>
 
-                  {user && !user.isEmployee && (
-                    <div className="row gutters">
-                      <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div className="text-right ">
-                          {user && user.isAdmin && (
-                            <button
-                              type="button"
-                              onClick={handledelete}
-                              name="submit"
-                              className="btn btn-danger mt-5 px-5 float-end "
-                            >
-                              Delete
-                            </button>
-                          )}
+                  <div className="row gutters">
+                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                      <div className="text-right ">
+                        {user && user.isAdmin && (
                           <button
                             type="button"
-                            id="submit"
+                            onClick={handledelete}
                             name="submit"
-                            className="btn btn-secondary mt-5 px-5 me-5 float-end "
+                            className="btn btn-danger mt-5 px-5 float-end "
                           >
-                            Cancel
+                            Delete
                           </button>
-                          <button
-                            type="button"
-                            id="submit"
-                            name="submit"
-                            onClick={handleUpdate}
-                            className="btn btn-primary mt-5 px-5 mx-5 float-end"
-                          >
-                            Update
-                          </button>
-                        </div>
+                        )}
+                        <button
+                          type="button"
+                          id="submit"
+                          name="submit"
+                          className="btn btn-secondary mt-5 px-5 me-5 float-end "
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          type="button"
+                          id="submit"
+                          name="submit"
+                          onClick={handleUpdate}
+                          className="btn btn-primary mt-5 px-5 mx-5 float-end"
+                        >
+                          Update
+                        </button>
                       </div>
                     </div>
-                  )}
+                  </div>
                 </div>
               </div>
             </div>
