@@ -30,7 +30,7 @@ export default function Search() {
       setStudents(res.data);
     };
     fetchStudents();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const search = (data) => {
     return data.filter(

@@ -22,7 +22,7 @@ export default function SearchEmployee() {
       setEmployees(res.data);
     };
     fetchEmployees();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const search = (data) => {
     return data.filter(
