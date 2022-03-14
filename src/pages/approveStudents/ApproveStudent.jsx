@@ -18,7 +18,7 @@ export default function ApproveStudent() {
       setStudents(res.data);
     };
     fetchStudents();
-  }, [id]);
+  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleClick = (event) => {
     setId(event.target.value);
@@ -39,7 +39,7 @@ export default function ApproveStudent() {
       setId(false);
     };
     approveStudent();
-  }, [id]);
+  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="approveStudent">
