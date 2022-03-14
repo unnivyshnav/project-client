@@ -17,7 +17,7 @@ export default function ApproveEmployee() {
       setEmployees(res.data);
     };
     fetchEmployees();
-  }, [id]);
+  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleClick = (event) => {
     setId(event.target.value);
@@ -38,7 +38,7 @@ export default function ApproveEmployee() {
       setId("00");
     };
     approveEmployee();
-  }, [id]);
+  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="approveEmployee">
