@@ -80,6 +80,7 @@ export default function StudentRegister() {
     fetchCourses();
   });
   const [fee, setFee] = useState("");
+  const [respnse, setResponse] = useState("");
 
   const [course, setCourse] = useState("");
   const [file, setFile] = useState(null);
@@ -153,6 +154,7 @@ export default function StudentRegister() {
         formValues
       );
       console.log(res);
+      setResponse(res.data);
 
       // window.location.replace("/student-login");
     } catch (err) {}
@@ -161,7 +163,7 @@ export default function StudentRegister() {
 
   return (
     <>
-      {paymentMode ? (
+      {paymentMode && respnse.isStudent ? (
         <div className="App">
           <div className="book_container">
             <img src={book.img} alt="book_img" className="book_img" />
