@@ -54,7 +54,7 @@ export default function StudentRegister() {
 
   const handlePayment = async () => {
     try {
-      const orderUrl = "http://ictak-project.herokuapp.com/api/payment/orders";
+      const orderUrl = "https://ictak-project.herokuapp.com/api/payment/orders";
       const { data } = await axios.post(orderUrl, { amount: formValues.fee });
       console.log(data);
       initPayment(data.data);
