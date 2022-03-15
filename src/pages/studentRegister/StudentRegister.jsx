@@ -15,7 +15,6 @@ export default function StudentRegister() {
     name: "The Fault in our stars",
     author: " Vyshnav",
     img: "https://ictkerala.org/wp-content/uploads/2019/01/cropped-ict-ico.png",
-    price: 250,
   };
   const initPayment = (data) => {
     const options = {
@@ -29,9 +28,12 @@ export default function StudentRegister() {
       handler: async (response) => {
         try {
           const verifyUrl =
-            "https://ictak-project.herokuapp.com/api/payment/verify";
+            "http://ictak-project.herokuapp.com/api/payment/verify";
           const { data } = await axios.post(verifyUrl, response);
           console.log(data);
+          alert(response.razorpay_payment_id);
+          alert(response.razorpay_order_id);
+          alert(response.razorpay_signature);
           window.location.replace("/");
         } catch (error) {
           console.log(error);
@@ -40,6 +42,11 @@ export default function StudentRegister() {
       theme: {
         color: "#3399cc",
       },
+      prefill: {
+        name: formValues.name,
+        email: formValues.email,
+        contact: formValues.phone,
+      },
     };
     const rzp1 = new window.Razorpay(options);
     rzp1.open();
@@ -47,7 +54,7 @@ export default function StudentRegister() {
 
   const handlePayment = async () => {
     try {
-      const orderUrl = "https://ictak-project.herokuapp.com/api/payment/orders";
+      const orderUrl = "http://ictak-project.herokuapp.com/api/payment/orders";
       const { data } = await axios.post(orderUrl, { amount: formValues.fee });
       console.log(data);
       initPayment(data.data);

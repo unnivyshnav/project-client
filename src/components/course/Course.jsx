@@ -6,7 +6,7 @@ import { useEffect } from "react";
 function Course({ course }) {
   const PF = "https://ictak-project.herokuapp.com/images/";
   useEffect(() => {
-    Aos.init({ duration: 1000 });
+    Aos.init({ duration: 500 });
   }, []);
 
   return (
