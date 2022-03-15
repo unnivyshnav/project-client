@@ -27,6 +27,22 @@ export default function ApproveStudent() {
   const handleClick = (event) => {
     setId(event.target.value);
   };
+  const handleDelete = async (event) => {
+    setId(event.target.value);
+    if (id) {
+      console.log("hi");
+      try {
+        await axios.delete(
+          `https://ictak-project.herokuapp.com/api/student/${id}`,
+
+          {
+            headers: { token: "Bearer " + user.accessToken },
+          }
+        );
+      } catch (err) {}
+      setId(false);
+    }
+  };
   useEffect(() => {
     const approveStudent = async () => {
       if (id) {
@@ -83,7 +99,13 @@ export default function ApproveStudent() {
                     >
                       Approve
                     </button>
-                    <button className="btns btn-danger mx-2">Reject</button>
+                    <button
+                      className="btns btn-danger mx-2"
+                      value={item._id}
+                      onClick={handleDelete}
+                    >
+                      Reject
+                    </button>
                   </td>
                 </tr>
               ))}

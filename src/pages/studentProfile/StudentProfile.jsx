@@ -70,7 +70,6 @@ export default function StudentProfile() {
   };
 
   const handleUpdate = async () => {
-    console.log(exitExamMark);
     try {
       await axios.put(
         `https://ictak-project.herokuapp.com/api/student/${student._id}`,

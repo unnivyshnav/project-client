@@ -24,13 +24,15 @@ export default function ViewCourses() {
       {isLoading ? (
         <Skeleton type="custom" />
       ) : (
-        <div className="viewCourses">
-          <div className="inner">
-            <Courses courses={courses} />
+        <div>
+          <div className="viewCourses">
+            <div className="inner">
+              <Courses courses={courses} />
+            </div>
           </div>
+          <Footer />
         </div>
       )}
-      <Footer />
     </>
   );
 }
