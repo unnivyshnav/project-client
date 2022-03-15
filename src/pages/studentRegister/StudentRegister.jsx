@@ -28,7 +28,7 @@ export default function StudentRegister() {
       handler: async (response) => {
         try {
           const verifyUrl =
-            "http://ictak-project.herokuapp.com/api/payment/verify";
+            "https://ictak-project.herokuapp.com/api/payment/verify";
           const { data } = await axios.post(verifyUrl, response);
           console.log(data);
           alert(response.razorpay_payment_id);
