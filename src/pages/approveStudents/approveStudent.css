@@ -1,6 +1,6 @@
 .aprove_table_container {
   background-color: #00e08a;
-  padding-top: 20px;
+  padding-top: 40px;
 }
 
 .heading {
@@ -37,7 +37,7 @@
 }
 
 .table tbody tr td {
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: 0.35px;
   font-weight: normal;
 
@@ -51,7 +51,7 @@
   width: 90px;
 }
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .table thead {
     display: none;
   }
@@ -84,4 +84,4 @@
     font-size: 14px;
     text-align: left;
   }
-}
+} */

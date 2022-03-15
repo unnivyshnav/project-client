@@ -39,7 +39,7 @@ export default function ViewCourse() {
         },
         { username: user.username }
       );
-      window.location.replace("/");
+      window.location.replace("/courses");
     } catch (err) {}
   };
 
