@@ -48,7 +48,7 @@ export default function Search() {
     );
   };
   return (
-    <div className="searchmain">
+    <div className="searchmainWrap">
       {isLoading ? (
         <Skeleton type="custom" />
       ) : (

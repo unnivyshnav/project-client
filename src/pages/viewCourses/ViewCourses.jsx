@@ -3,6 +3,7 @@ import Courses from "../../components/courses/Courses";
 import axios from "axios";
 import Skeleton from "../../components/skeleton/Skeleton";
 import "./viewCourses.scss";
+import Footer from "../../components/footer/Footer";
 
 export default function ViewCourses() {
   const [isLoading, setIsLoading] = useState(true);
@@ -29,6 +30,7 @@ export default function ViewCourses() {
           </div>
         </div>
       )}
+      <Footer />
     </>
   );
 }

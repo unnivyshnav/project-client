@@ -2,11 +2,13 @@ import "./searchEmployee.css";
 
 import { useEffect, useState, useContext } from "react";
 import { Context } from "../../context/Context";
+import Skeleton from "../../components/skeleton/Skeleton";
 
 import axios from "axios";
 import EmployeeTable from "../../components/employeeTable/EmployeeTable";
 
 export default function SearchEmployee() {
+  const [isLoading, setIsLoading] = useState(true);
   const [employees, setEmployees] = useState([]);
   const [query, setQuery] = useState("");
   const { user } = useContext(Context);
@@ -20,6 +22,7 @@ export default function SearchEmployee() {
         }
       );
       setEmployees(res.data);
+      setIsLoading(false);
     };
     fetchEmployees();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -33,15 +36,21 @@ export default function SearchEmployee() {
     );
   };
   return (
-    <div className="searchmain">
-      <input
-        type="text"
-        placeholder="Search"
-        className="search"
-        onChange={(e) => setQuery(e.target.value)}
-      />
-      <span></span>
-      <EmployeeTable data={search(employees)} />
+    <div className="searchmainWrapp">
+      {isLoading ? (
+        <Skeleton type="custom" />
+      ) : (
+        <div className="searchmain">
+          <input
+            type="text"
+            placeholder="Search"
+            className="search"
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <span></span>
+          <EmployeeTable data={search(employees)} />
+        </div>
+      )}
     </div>
   );
 }

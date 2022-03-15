@@ -17,7 +17,7 @@ function Course({ course }) {
           <span className="courseTitle">{course.name}</span>
         </div>
       </Link>
-      <p className="courseDesc">{course.description}</p>
+      {/* <p className="courseDesc">{course.description}</p> */}
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Table({ data }) {
   // const PF = "https://ictak-project.herokuapp.com/images/";
   return (
-    <div className="">
+    <div className="tables">
       {data.map((item) => (
         <Link className="link" to={`/student/${item._id}`}>
           <table className="table table-striped table-hover ">
