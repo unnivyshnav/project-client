@@ -5,6 +5,7 @@ import { Context } from "../../context/Context";
 
 export default function Write() {
   const [name, setName] = useState("");
+  const [fee, setFee] = useState("");
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
   const { user } = useContext(Context);
@@ -15,6 +16,7 @@ export default function Write() {
     const newCourse = {
       name,
       description,
+      fee,
     };
     // console.log(newCourse);
     console.log(user.isAdmin);
@@ -53,7 +55,7 @@ export default function Write() {
           <img className="writeImg" src={URL.createObjectURL(file)} alt="" />
         )}
         <form className="writeForm" onSubmit={handleSubmit}>
-          <div className="writeFormGroup">
+          <div className="writeFormGroupTop">
             <label htmlFor="fileInput">
               <i className="writeIcon fas fa-plus">Add image</i>
             </label>
@@ -70,18 +72,30 @@ export default function Write() {
               autoFocus={true}
               onChange={(e) => setName(e.target.value)}
             />
+            <button className="writeSubmit" type="submit">
+              Publish
+            </button>
+          </div>{" "}
+          <div className="col">
+            {" "}
+            <div className="writeFormGroupDown">
+              <input
+                type="text"
+                placeholder="Fee"
+                className="writeInput  writeFee"
+                autoFocus={true}
+                onChange={(e) => setFee(e.target.value)}
+              />
+            </div>
+            <div className="writeFormGroupDown">
+              <textarea
+                placeholder="description..."
+                type="text"
+                className="writeInput writeText"
+                onChange={(e) => setDescription(e.target.value)}
+              ></textarea>
+            </div>
           </div>
-          <div className="writeFormGroup">
-            <textarea
-              placeholder="Tell your story..."
-              type="text"
-              className="writeInput writeText"
-              onChange={(e) => setDescription(e.target.value)}
-            ></textarea>
-          </div>
-          <button className="writeSubmit" type="submit">
-            Publish
-          </button>
         </form>
       </div>
     </div>

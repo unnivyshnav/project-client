@@ -19,7 +19,7 @@
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.596);
+  background-color: rgba(0, 0, 0, 0.705);
   border-radius: 10px;
   color: white;
 }
@@ -98,11 +98,12 @@ input:invalid[focused="true"] {
 
 input:invalid[focused="true"] ~ .error {
   visibility: visible;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 45, 45);
   font-size: 16px;
   display: block;
   margin-bottom: 20px;
   text-align: center;
+  z-index: 999;
 }
 
 .App {

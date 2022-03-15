@@ -1,11 +1,10 @@
-import "./approveStudent.css";
 import { useEffect, useState, useContext } from "react";
+import "./approveStudent.css";
 import { Context } from "../../context/Context";
 import axios from "axios";
 export default function ApproveStudent() {
   const { user } = useContext(Context);
   const [students, setStudents] = useState([]);
-
   const [id, setId] = useState("");
   useEffect(() => {
     const fetchStudents = async () => {
@@ -42,10 +41,10 @@ export default function ApproveStudent() {
   }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="approveStudent">
-      <h1>Approve Student</h1>
-      <table className="table table-dark table-hover">
-        <tbody>
+    <div className="aprove_table_container">
+      <h1 className="heading">APPROVE STUDENTS</h1>
+      <table className="table">
+        <thead>
           <tr>
             <th>Name</th>
             <th>Qualification</th>
@@ -56,24 +55,26 @@ export default function ApproveStudent() {
             <th>Employment Status</th>
             <th>Action</th>
           </tr>
+        </thead>
+        <tbody>
           {students.map((item) => (
             <tr key={item._id}>
-              <td>{item.name}</td>
-              <td>{item.qualification}</td>
-              <td>{item.passOutYear}</td>
-              <td>{item.course}</td>
-              <td>{item.place}</td>
+              <td data-label="Name">{item.name}</td>
+              <td data-label="Qualification">{item.qualification}</td>
+              <td data-label="Passout Year">{item.passOutYear}</td>
+              <td data-label="Course">{item.course}</td>
+              <td data-label="Place">{item.place}</td>
 
               <td>{item.employmentStatus}</td>
               <td>
                 <button
-                  className="btn btn-success"
+                  className="btns btn-success"
                   value={item._id}
                   onClick={handleClick}
                 >
                   Approve
                 </button>
-                <button className="btn btn-danger mx-2">Reject</button>
+                <button className="btns btn-danger mx-2">Reject</button>
               </td>
             </tr>
           ))}

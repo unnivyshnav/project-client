@@ -36,7 +36,7 @@ export default function StudentLogin() {
 
   return (
     <div className="login">
-      <span className="loginTitle">EMPLOYEE LOGIN</span>
+      <span className="EloginTitle">EMPLOYEE LOGIN</span>
       <form onSubmit={handleSubmit} className="loginForm">
         <label>Email</label>
         <input

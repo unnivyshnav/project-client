@@ -1,6 +1,9 @@
 .write {
   padding-top: 50px;
   margin-top: 100px;
+  background: #00e08a;
+  height: 100vh;
+  padding-left: 5%;
 }
 
 .writeImg {
@@ -15,12 +18,13 @@
   position: relative;
 }
 
-.writeFormGroup {
-  margin-left: 150px;
+.writeFormGroupTop {
+  margin-left: 50px;
   display: flex;
-  align-items: center;
 }
-
+.writeFormGroupDown {
+  margin-left: 80px;
+}
 .writeIcon {
   color: white;
   background-color: teal;
@@ -28,12 +32,7 @@
   border: none;
   border-radius: 10px;
   font-size: 12px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-right: 10px;
   cursor: pointer;
 }
 
@@ -42,11 +41,13 @@
   border: none;
   padding: 20px;
   width: 70vw;
+  border-radius: 10px;
+  height: 10px;
 }
 
 .writeInput::placeholder {
   color: rgb(189, 185, 185);
-  font-weight: 400;
+  font-size: 14px;
 }
 
 .writeInput:focus {
@@ -55,18 +56,26 @@
 
 .writeText {
   width: 70vw;
-  height: 100vh;
+  height: 50vh;
   font-family: inherit;
   font-size: 20px;
+  margin-top: 2%;
+  margin-left: 6%;
+}
+.writeFee {
+  width: 70vw;
+
+  font-family: inherit;
+  font-size: 20px;
+  margin-top: 2%;
+  margin-left: 6%;
 }
 
 .writeSubmit {
-  position: absolute;
-  top: 20px;
-  right: 50px;
   color: white;
   background-color: teal;
   padding: 10px;
+  margin-left: 10px;
   border: none;
   border-radius: 10px;
   font-size: 16px;
@@ -87,4 +96,27 @@
   margin-top: 50px;
   font-family: "Josefin Sans", sans-serif;
   color: rgb(70, 70, 70);
+}
+
+@media screen and (max-width: 968px) {
+  .writeForm {
+    width: 100%;
+  }
+  .writeFormGroupTop {
+    width: 40%;
+    flex-direction: column;
+  }
+  .writeFormGroupDown {
+    width: 90%;
+    margin-left: 6%;
+  }
+  .writeIcon {
+    width: 40%;
+
+    margin-bottom: 10px;
+  }
+  .writeSubmit {
+    width: 40%;
+    margin-top: 10px;
+  }
 }

@@ -34,9 +34,9 @@ export default function ViewCourse() {
       await axios.delete(
         `https://ictak-project.herokuapp.com/api/course/${course._id}`,
 
-        // {
-        //   headers: { token: "Bearer " + user.accessToken },
-        // },
+        {
+          headers: { token: "Bearer " + user.accessToken },
+        },
         { username: user.username }
       );
       window.location.replace("/");
@@ -50,10 +50,10 @@ export default function ViewCourse() {
         {
           name,
           description,
+        },
+        {
+          headers: { token: "Bearer " + user.accessToken },
         }
-        // {
-        //   headers: { token: "Bearer " + user.accessToken },
-        // }
       );
       setUpdateMode(false);
     } catch (err) {}

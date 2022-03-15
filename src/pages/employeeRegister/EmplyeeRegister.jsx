@@ -90,7 +90,7 @@ export default function EmployeeRegister() {
           <div className="formItemscol">
             <label>Address</label>
             <textarea
-              rows="5"
+              rows={5}
               type="text"
               name="address"
               className="registerInput address"

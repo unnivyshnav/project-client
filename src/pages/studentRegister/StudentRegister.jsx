@@ -269,7 +269,7 @@ export default function StudentRegister() {
                       onChange={handleChange}
                       onFocus={() => setFocused(false)}
                     ></textarea>
-                    {/* <span className="error">{errorMessage.others}</span> */}
+                    <span className="error">{errorMessage.others}</span>
                   </div>
                   <div className="formInput col-sm">
                     <label>Qualification</label>
@@ -397,6 +397,7 @@ export default function StudentRegister() {
                       className="registerInput"
                       onChange={handleChange}
                       disabled={true}
+                      required="true"
                       value={fee}
                     />
                     <span className="error">{errorMessage.others}</span>
