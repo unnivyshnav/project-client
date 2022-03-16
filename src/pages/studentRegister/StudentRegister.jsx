@@ -68,6 +68,7 @@ export default function StudentRegister() {
   //////////////////////
 
   const [courses, setCourses] = useState([]);
+  const [wrong, setWrong] = useState("");
   const [focused, setFocused] = useState(false);
   const [paymentMode, setPaymentMode] = useState(false);
   useEffect(() => {
@@ -157,7 +158,10 @@ export default function StudentRegister() {
       setResponse(res.data);
 
       // window.location.replace("/student-login");
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+      setWrong("email id already exist");
+    }
   };
   // console.log(focused);
 
@@ -410,12 +414,16 @@ export default function StudentRegister() {
             <div className="row d-flex justify-content-center ">
               <button className="registerButton col-6 mx-4" type="submit">
                 REGISTER
-              </button>
+              </button>{" "}
               {/* <button className="registerButton col-6 mx-4">
                 <Link to="/login" className="link">
                   LOGIN
                 </Link>
               </button> */}
+            </div>
+            <div className="row d-flex justify-content-center">
+              {" "}
+              <p className=" col-6 mx-4 wrong ">{wrong}</p>
             </div>
           </form>
         </div>
