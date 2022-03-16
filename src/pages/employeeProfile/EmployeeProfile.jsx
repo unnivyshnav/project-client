@@ -59,11 +59,11 @@ export default function EmployeeProfile() {
   const handledelete = async () => {
     try {
       await axios.delete(
-        `https://ictak-project.herokuapp.com/api/employee/${employee._id}`
+        `https://ictak-project.herokuapp.com/api/employee/${employee._id}`,
 
-        // {
-        //   headers: { token: "Bearer " + user.accessToken },
-        // },
+        {
+          headers: { token: "Bearer " + user.accessToken },
+        }
       );
 
       window.location.replace("/search");
