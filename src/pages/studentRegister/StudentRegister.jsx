@@ -151,7 +151,7 @@ export default function StudentRegister() {
     }
     try {
       const res = await axios.post(
-        "https://ictak-project.herokuapp.com/student-register",
+        "https://ictak-project.herokuapp.com/api/auth/student-register",
         formValues
       );
 
