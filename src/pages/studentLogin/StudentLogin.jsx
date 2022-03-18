@@ -8,7 +8,7 @@ export default function StudentLogin() {
   const { dispatch, isFetching } = useContext(Context);
   const emailRef = useRef();
   const passwordRef = useRef();
-  // const [wrong, setWrong] = useState("");
+  const [wrong, setWrong] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
@@ -58,7 +58,7 @@ export default function StudentLogin() {
         </button>
       </form>
 
-      {/* <p>{wrong}</p> */}
+      <p>{wrong}</p>
     </div>
   );
 }
