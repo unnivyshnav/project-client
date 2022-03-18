@@ -154,13 +154,13 @@ export default function StudentRegister() {
         "https://ictak-project.herokuapp.com/api/auth/student-register",
         formValues
       );
-      console.log(res);
+
       setResponse(res.data);
 
       // window.location.replace("/student-login");
     } catch (err) {
       console.log(err);
-      setWrong("email id already exist");
+      // setWrong("email id already exist");
     }
   };
   // console.log(focused);

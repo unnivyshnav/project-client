@@ -16,8 +16,8 @@ export default function Navbar() {
   };
 
   return (
-    <div className={user && user.isAdmin ? "navbar1 admin " : "navbar1"}>
-      <div className="container-fluid  ">
+    <div className={user && user.isAdmin ? "navbar admin " : "navbar "}>
+      <div className="containe  ">
         <div className="left">
           <img
             src="https://ictkerala.org/wp-content/uploads/2019/01/cropped-ict-ico.png"
